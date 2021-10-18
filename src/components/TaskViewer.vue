@@ -5,6 +5,10 @@
       <div class="title">
         {{ task.summary }}
       </div>
+      <div v-if="task.epic" class="info-item">
+        <b>Epic: </b>
+        {{ task.epic }}
+      </div>
       <div v-if="task.description" class="info-item">
         <b>Summary: </b>
         {{ task.description }}

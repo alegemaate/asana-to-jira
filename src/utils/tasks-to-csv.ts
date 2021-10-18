@@ -19,17 +19,14 @@ export const tasksToArray = (tasks: Task[]): string[][] => {
       if (header === "labels") {
         return delimitCell(task.labels.join(","));
       }
-      return delimitCell(task[header]);
+      return delimitCell(task[header] ?? "");
     })
   );
   return [headers, ...rows];
 };
 
 export const delimitCell = (text: string): string => {
-  let escaped = text;
-  if (escaped.includes('"')) {
-    escaped = escaped.replace(/"/g, '\\"');
-  }
+  let escaped = text.replace(/"/g, '""');
 
   if (escaped.includes(",") || escaped.includes("\n")) {
     escaped = `"${escaped}"`;

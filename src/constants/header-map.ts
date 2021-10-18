@@ -25,7 +25,7 @@ export const IMPORT_HEADER_MAP: ImportHeaderMap[] = [
   { asanaName: "Tags", objName: "labels" },
   { asanaName: "Notes", objName: "description" },
   { asanaName: "Parent Task", objName: "parentId" },
-  { asanaName: "", objName: "type" },
+  { asanaName: "Epic", objName: "epic" },
 ];
 
 export const EXPORT_HEADER_MAP: ExportHeaderMap[] = [
@@ -51,4 +51,6 @@ export const EXPORT_HEADER_MAP: ExportHeaderMap[] = [
   { objName: "summary", jiraName: "Summary" },
   { objName: "parentId", jiraName: "Parent Id" },
   { objName: "type", jiraName: "Issue Type" },
+  { objName: "epicLink", jiraName: "Epic Link" },
+  { objName: "epicName", jiraName: "Epic Name" },
 ];

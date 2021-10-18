@@ -108,6 +108,9 @@ export const parseColumn = (
       column: "",
       labels: [],
       type: "task",
+      epic: "",
+      epicLink: "",
+      epicName: "",
     }
   );
 
@@ -115,35 +118,72 @@ export const parseColumn = (
  * POST PROCESSING
  **/
 export const postProcessCsvData = (tasks: Task[]): Task[] => {
+  const epicNames = [
+    ...new Set(tasks.map((task) => task.epic ?? "").filter((epic) => epic)),
+  ];
+
+  const epics = createEpics(epicNames);
+
+  const epicMap = epics.reduce<Record<string, Task>>(
+    (acc, task) => ({ ...acc, [task.summary]: task }),
+    {}
+  );
+
   const taskMap = tasks.reduce<Record<string, Task>>(
     (acc, task) => ({ ...acc, [task.summary]: task }),
     {}
   );
 
-  return tasks.map((task) => postProcessColumn(task, taskMap));
-};
+  console.log(epicMap);
 
-const EPIC_COLUMN = "Stories & Requirements";
+  return epics.concat(
+    tasks.map((task) => postProcessColumn(task, taskMap, epicMap))
+  );
+};
 
 export const postProcessColumn = (
   task: Task,
-  taskMap: Record<string, Task>
+  taskMap: Record<string, Task>,
+  epicMap: Record<string, Task>
 ): Task => {
-  if (task.column === EPIC_COLUMN) {
-    task.type = "epic";
-  } else if (task.resolvedDate && task.column) {
+  if (task.resolvedDate && task.column) {
     task.column = "Done";
   }
 
   if (task.parentId) {
     const parent = taskMap[task.parentId];
-    if (parent.column === EPIC_COLUMN) {
-      task.type = "story";
-    } else {
+    if (parent) {
       task.type = "subtask";
+      task.parentId = parent.id;
     }
-    task.parentId = parent.id;
+  } else if (task.epic) {
+    const epic = epicMap[task.epic];
+    if (epic) {
+      task.epicLink = epic.summary;
+    }
   }
 
   return task;
+};
+
+export const createEpics = (names: string[]): Task[] => {
+  return names.map((name) => ({
+    id: Math.random().toString().slice(2, 11),
+    description: "",
+    summary: name,
+    parentId: "",
+    assigneeEmail: "",
+    dueDate: "",
+    createdDate: "",
+    modifiedDate: "",
+    resolvedDate: "",
+    startDate: "",
+    priority: "",
+    column: "To Do",
+    labels: [],
+    type: "epic",
+    epic: "",
+    epicName: name,
+    epicLink: "",
+  }));
 };
