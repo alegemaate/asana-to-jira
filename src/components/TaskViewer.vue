@@ -24,8 +24,8 @@
 </template>
 
 <script lang="ts">
+import { Task } from "@/types/task";
 import { Vue, Options } from "vue-class-component";
-import { Task } from "@/utils/convertTasks";
 
 @Options({
   props: {

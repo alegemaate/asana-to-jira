@@ -32,8 +32,9 @@
 import { Options, Vue } from "vue-class-component";
 import FileUpload from "@/components/FileUpload.vue";
 import TaskViewer from "@/components/TaskViewer.vue";
-import { Task, convertTasks } from "@/utils/convertTasks";
-import { tasksToCsv } from "@/utils/tasksToCsv";
+import { convertTasks } from "@/utils/convert-tasks";
+import { tasksToCsv } from "@/utils/tasks-to-csv";
+import { Task } from "@/types/task";
 
 @Options({
   components: {

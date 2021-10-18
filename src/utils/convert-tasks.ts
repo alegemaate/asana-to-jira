@@ -1,25 +1,7 @@
-import { csvToArray } from "@/utils/csvToArray";
-import { IMPORT_HEADER_MAP, IndexedHeaderMap } from "@/utils/headerMap";
-
-/**
- * TYPES
- **/
-export interface Task {
-  id: string;
-  description: string;
-  summary: string;
-  parentId: string;
-  assigneeEmail: string;
-  dueDate: string;
-  createdDate: string;
-  modifiedDate: string;
-  resolvedDate: string;
-  startDate: string;
-  priority: string;
-  column: string;
-  labels: string[];
-  type: "epic" | "story" | "task" | "subtask";
-}
+import { IMPORT_HEADER_MAP } from "@/constants/header-map";
+import { IndexedHeaderMap } from "@/types/header-map";
+import { Task } from "@/types/task";
+import { csvToArray } from "./csv-to-array";
 
 interface ParsedCsvData {
   headers: string[];
@@ -41,7 +23,7 @@ export const convertTasks = (csvData: string): Task[] => {
 /**
  * PARSE
  **/
-const parseCsvData = (csvData: string): ParsedCsvData => {
+export const parseCsvData = (csvData: string): ParsedCsvData => {
   const cells = csvToArray(csvData);
 
   if (cells.length < 1) {
@@ -54,7 +36,7 @@ const parseCsvData = (csvData: string): ParsedCsvData => {
 /**
  * VALIDATE
  **/
-const validateCsvData = (csvData: ParsedCsvData): ParsedCsvData => {
+export const validateCsvData = (csvData: ParsedCsvData): ParsedCsvData => {
   csvData.cells.forEach((cells) => {
     if (cells.length !== csvData.headers.length) {
       throw new Error(
@@ -69,13 +51,13 @@ const validateCsvData = (csvData: ParsedCsvData): ParsedCsvData => {
 /**
  * CONVERT TO TASK
  **/
-const convertCsvData = (csvData: ParsedCsvData): Task[] => {
+export const convertCsvData = (csvData: ParsedCsvData): Task[] => {
   const headers = parseHeaders(csvData.headers);
 
   return csvData.cells.map((cells) => parseColumn(headers, cells));
 };
 
-const parseHeaders = (headers: string[]): (IndexedHeaderMap | null)[] =>
+export const parseHeaders = (headers: string[]): (IndexedHeaderMap | null)[] =>
   headers.flatMap((header, index) => {
     const found = IMPORT_HEADER_MAP.find((map) => map.asanaName === header);
     if (!found) {
@@ -87,7 +69,7 @@ const parseHeaders = (headers: string[]): (IndexedHeaderMap | null)[] =>
     };
   });
 
-const parseColumn = (
+export const parseColumn = (
   headers: (IndexedHeaderMap | null)[],
   column: string[]
 ): Task =>
@@ -132,7 +114,7 @@ const parseColumn = (
 /**
  * POST PROCESSING
  **/
-const postProcessCsvData = (tasks: Task[]): Task[] => {
+export const postProcessCsvData = (tasks: Task[]): Task[] => {
   const taskMap = tasks.reduce<Record<string, Task>>(
     (acc, task) => ({ ...acc, [task.summary]: task }),
     {}
@@ -143,7 +125,10 @@ const postProcessCsvData = (tasks: Task[]): Task[] => {
 
 const EPIC_COLUMN = "Stories & Requirements";
 
-const postProcessColumn = (task: Task, taskMap: Record<string, Task>): Task => {
+export const postProcessColumn = (
+  task: Task,
+  taskMap: Record<string, Task>
+): Task => {
   if (task.column === EPIC_COLUMN) {
     task.type = "epic";
   } else if (task.resolvedDate && task.column) {
@@ -157,6 +142,7 @@ const postProcessColumn = (task: Task, taskMap: Record<string, Task>): Task => {
     } else {
       task.type = "subtask";
     }
+    task.parentId = parent.id;
   }
 
   return task;

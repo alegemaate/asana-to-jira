@@ -1,4 +1,4 @@
-import { Task } from "@/utils/convertTasks";
+import { ExportHeaderMap, ImportHeaderMap } from "@/types/header-map";
 
 /**
  * CONSTANTS
@@ -52,17 +52,3 @@ export const EXPORT_HEADER_MAP: ExportHeaderMap[] = [
   { objName: "parentId", jiraName: "Parent Id" },
   { objName: "type", jiraName: "Issue Type" },
 ];
-
-export interface ImportHeaderMap {
-  asanaName: string;
-  objName: keyof Task;
-}
-
-export interface IndexedHeaderMap extends ImportHeaderMap {
-  index: number;
-}
-
-export interface ExportHeaderMap {
-  jiraName: string;
-  objName: keyof Task;
-}
