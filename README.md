@@ -9,6 +9,10 @@ Process:
 - Infers epics and stories from epic column (currently hardcoded)
 - Infer done column status from Date Completed
 
+## Demo
+
+[View working demo here](https://alegemaate.com/asana-to-jira/)
+
 ## Project setup
 
 ```
@@ -38,7 +42,3 @@ yarn test:unit
 ```
 yarn lint
 ```
-
-### Customize configuration
-
-See [Configuration Reference](https://cli.vuejs.org/config/).
