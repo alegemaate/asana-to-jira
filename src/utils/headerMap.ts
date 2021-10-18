@@ -14,7 +14,7 @@ export const IMPORT_HEADER_MAP: ImportHeaderMap[] = [
     asanaName: "Last Modified",
     objName: "modifiedDate",
   },
-  { asanaName: "Name", objName: "description" },
+  { asanaName: "Name", objName: "summary" },
   { asanaName: "Section/Column", objName: "column" },
   {
     asanaName: "Assignee Email",
@@ -23,7 +23,7 @@ export const IMPORT_HEADER_MAP: ImportHeaderMap[] = [
   { asanaName: "Start Date", objName: "startDate" },
   { asanaName: "Due Date", objName: "dueDate" },
   { asanaName: "Tags", objName: "labels" },
-  { asanaName: "Notes", objName: "summary" },
+  { asanaName: "Notes", objName: "description" },
   { asanaName: "Parent Task", objName: "parentId" },
   { asanaName: "", objName: "type" },
 ];
