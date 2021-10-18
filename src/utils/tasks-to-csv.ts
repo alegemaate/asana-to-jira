@@ -26,10 +26,7 @@ export const tasksToArray = (tasks: Task[]): string[][] => {
 };
 
 export const delimitCell = (text: string): string => {
-  let escaped = text;
-  if (escaped.includes('"')) {
-    escaped = escaped.replace(/"/g, '\\"');
-  }
+  let escaped = text.replace(/"/g, '""');
 
   if (escaped.includes(",") || escaped.includes("\n")) {
     escaped = `"${escaped}"`;

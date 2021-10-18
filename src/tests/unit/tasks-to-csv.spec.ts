@@ -23,7 +23,7 @@ describe("tasksToCsv.ts - delimitCell", () => {
 
     const delimited = delimitCell(text);
 
-    expect(delimited).toBe('"a,\\"b\\""');
+    expect(delimited).toBe('"a,""b"""');
   });
 
   it("delimits commas and single quote", () => {
@@ -31,7 +31,7 @@ describe("tasksToCsv.ts - delimitCell", () => {
 
     const delimited = delimitCell(text);
 
-    expect(delimited).toBe('"a,\\"b"');
+    expect(delimited).toBe('"a,""b"');
   });
 
   it("delimits newlines", () => {
@@ -47,7 +47,7 @@ describe("tasksToCsv.ts - delimitCell", () => {
 
     const delimited = delimitCell(text);
 
-    expect(delimited).toBe('"a,\\"b\nb\\""');
+    expect(delimited).toBe('"a,""b\nb"""');
   });
 });
 
