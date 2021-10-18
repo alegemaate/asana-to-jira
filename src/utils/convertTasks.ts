@@ -157,7 +157,6 @@ const postProcessColumn = (task: Task, taskMap: Record<string, Task>): Task => {
     } else {
       task.type = "subtask";
     }
-    task.parentId = parent.id;
   }
 
   return task;

@@ -4,7 +4,6 @@ This does some preprocessing on Asana CSV exports to make it easier to import to
 
 Process:
 
-- Add parent task ID (from parent name) which allows importing subtasks
 - Infer task type from parent id
 - Infers epics and stories from epic column (currently hardcoded)
 - Infer done column status from Date Completed
