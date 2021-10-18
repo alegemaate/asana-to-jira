@@ -69,6 +69,7 @@ describe("tasksToCsv.ts - tasksToArray", () => {
         column: "QA",
         labels: ["Test", "Test2"],
         type: "epic",
+        epic: "Epic",
       },
     ];
 
@@ -110,6 +111,7 @@ describe("tasksToCsv.ts - tasksToCsv", () => {
         column: "QA",
         labels: ["Test", "Test2"],
         type: "epic",
+        epic: "Epic",
       },
     ];
 

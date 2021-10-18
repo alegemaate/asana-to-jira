@@ -12,5 +12,6 @@ export interface Task {
   priority: string;
   column: string;
   labels: string[];
+  epic: string;
   type: "epic" | "story" | "task" | "subtask";
 }

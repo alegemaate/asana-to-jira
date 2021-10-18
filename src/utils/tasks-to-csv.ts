@@ -19,7 +19,7 @@ export const tasksToArray = (tasks: Task[]): string[][] => {
       if (header === "labels") {
         return delimitCell(task.labels.join(","));
       }
-      return delimitCell(task[header]);
+      return delimitCell(task[header] ?? "");
     })
   );
   return [headers, ...rows];
