@@ -134,7 +134,7 @@ const parseColumn = (
  **/
 const postProcessCsvData = (tasks: Task[]): Task[] => {
   const taskMap = tasks.reduce<Record<string, Task>>(
-    (acc, task) => ({ ...acc, [task.description]: task }),
+    (acc, task) => ({ ...acc, [task.summary]: task }),
     {}
   );
 

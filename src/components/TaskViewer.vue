@@ -3,11 +3,11 @@
     <va-card-title>{{ resolveTitle }}</va-card-title>
     <va-card-content>
       <div class="title">
-        {{ task.description }}
-      </div>
-      <div v-if="task.summary" class="info-item">
-        <b>Summary: </b>
         {{ task.summary }}
+      </div>
+      <div v-if="task.description" class="info-item">
+        <b>Summary: </b>
+        {{ task.description }}
       </div>
       <div v-if="task.assigneeEmail" class="info-item">
         <b>Assigned To: </b>
