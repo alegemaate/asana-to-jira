@@ -6,12 +6,16 @@ Process:
 
 - Add parent task ID (from parent name) which allows importing subtasks
 - Infer task type from parent id
-- Infers epics and stories from epic column (currently hardcoded)
+- Infers epics from custom Epic field
 - Infer done column status from Date Completed
 
 ## Demo
 
 [View working demo here](https://alegemaate.com/asana-to-jira/)
+
+## Note
+
+For epic imports you will need a Company Managed project. They do not work with Team managed because of limitations of the uploader.
 
 ## Project setup
 
