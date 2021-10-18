@@ -1,5 +1,5 @@
 import { Task } from "@/utils/convertTasks";
-import { HEADER_MAP } from "@/utils/headerMap";
+import { EXPORT_HEADER_MAP, IMPORT_HEADER_MAP } from "@/utils/headerMap";
 
 export const tasksToCsv = (tasks: Task[]): string => {
   const array = tasksToArray(tasks);
@@ -10,9 +10,12 @@ export const tasksToCsv = (tasks: Task[]): string => {
 };
 
 const tasksToArray = (tasks: Task[]): string[][] => {
-  const headers = HEADER_MAP.map((header) => header.objName);
+  const headers = EXPORT_HEADER_MAP.map((header) => header.jiraName);
+
+  const objHeaders = IMPORT_HEADER_MAP.map((header) => header.objName);
+
   const rows = tasks.map((task) =>
-    headers.map((header) => {
+    objHeaders.map((header) => {
       if (header === "labels") {
         return delimitCommas(task.labels.join(","));
       }

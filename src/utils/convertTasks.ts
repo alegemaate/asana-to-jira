@@ -1,5 +1,5 @@
 import { csvToArray } from "@/utils/csvToArray";
-import { HEADER_MAP, IndexedHeaderMap } from "@/utils/headerMap";
+import { IMPORT_HEADER_MAP, IndexedHeaderMap } from "@/utils/headerMap";
 
 /**
  * TYPES
@@ -77,7 +77,7 @@ const convertCsvData = (csvData: ParsedCsvData): Task[] => {
 
 const parseHeaders = (headers: string[]): (IndexedHeaderMap | null)[] =>
   headers.flatMap((header, index) => {
-    const found = HEADER_MAP.find((map) => map.asanaName === header);
+    const found = IMPORT_HEADER_MAP.find((map) => map.asanaName === header);
     if (!found) {
       return null;
     }
