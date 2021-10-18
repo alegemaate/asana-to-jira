@@ -35,8 +35,6 @@ export const convertTasks = (csvData: string): Task[] => {
   const converted = convertCsvData(validated);
   const processed = postProcessCsvData(converted);
 
-  console.log(processed[1]);
-
   return processed;
 };
 
@@ -146,7 +144,6 @@ const postProcessCsvData = (tasks: Task[]): Task[] => {
 const EPIC_COLUMN = "Stories & Requirements";
 
 const postProcessColumn = (task: Task, taskMap: Record<string, Task>): Task => {
-  console.log(task.column);
   if (task.column === EPIC_COLUMN) {
     task.type = "epic";
   } else if (task.resolvedDate && task.column) {
