@@ -109,6 +109,8 @@ export const parseColumn = (
       labels: [],
       type: "task",
       epic: "",
+      epicLink: "",
+      epicName: "",
     }
   );
 
@@ -157,7 +159,7 @@ export const postProcessColumn = (
   } else if (task.epic) {
     const epic = epicMap[task.epic];
     if (epic) {
-      task.parentId = epic.id;
+      task.epicLink = epic.summary;
     }
   }
 
@@ -181,5 +183,7 @@ export const createEpics = (names: string[]): Task[] => {
     labels: [],
     type: "epic",
     epic: "",
+    epicName: name,
+    epicLink: "",
   }));
 };

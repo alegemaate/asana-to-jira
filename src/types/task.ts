@@ -13,5 +13,7 @@ export interface Task {
   column: string;
   labels: string[];
   epic: string;
+  epicName: string;
+  epicLink: string;
   type: "epic" | "story" | "task" | "subtask";
 }

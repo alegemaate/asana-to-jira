@@ -70,6 +70,8 @@ describe("tasksToCsv.ts - tasksToArray", () => {
         labels: ["Test", "Test2"],
         type: "epic",
         epic: "Epic",
+        epicName: "Epic Name",
+        epicLink: "",
       },
     ];
 
@@ -89,6 +91,8 @@ describe("tasksToCsv.ts - tasksToArray", () => {
       "Summary",
       "Parent ID",
       "epic",
+      "",
+      "Epic Name",
     ]);
   });
 });
@@ -112,17 +116,19 @@ describe("tasksToCsv.ts - tasksToCsv", () => {
         labels: ["Test", "Test2"],
         type: "epic",
         epic: "Epic",
+        epicLink: "",
+        epicName: "Epic Name",
       },
     ];
 
     const [headers, column1] = tasksToCsv(tasks).split("\n");
 
     expect(headers).toEqual(
-      "Issue Id,Date Created,Date Resolved,Date Modified,Description,Status,Assignee,Start date,Due date,Labels,Summary,Parent Id,Issue Type"
+      "Issue Id,Date Created,Date Resolved,Date Modified,Description,Status,Assignee,Start date,Due date,Labels,Summary,Parent Id,Issue Type,Epic Link,Epic Name"
     );
 
     expect(column1).toEqual(
-      '123,2021-12-12,2023-12-12,2022-12-12,Desc,QA,alegemaate@gmail.com,2024-12-12,2020-12-12,"Test,Test2",Summary,Parent ID,epic'
+      '123,2021-12-12,2023-12-12,2022-12-12,Desc,QA,alegemaate@gmail.com,2024-12-12,2020-12-12,"Test,Test2",Summary,Parent ID,epic,,Epic Name'
     );
   });
 });

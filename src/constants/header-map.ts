@@ -51,4 +51,6 @@ export const EXPORT_HEADER_MAP: ExportHeaderMap[] = [
   { objName: "summary", jiraName: "Summary" },
   { objName: "parentId", jiraName: "Parent Id" },
   { objName: "type", jiraName: "Issue Type" },
+  { objName: "epicLink", jiraName: "Epic Link" },
+  { objName: "epicName", jiraName: "Epic Name" },
 ];
