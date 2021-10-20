@@ -1,4 +1,6 @@
-# asana-to-jira
+# Asana to Jira
+
+[![Build and Deploy](https://github.com/alegemaate/asana-to-jira/actions/workflows/deploy-pages.yml/badge.svg)](https://github.com/alegemaate/asana-to-jira/actions/workflows/deploy-pages.yml) [![Maintainability](https://api.codeclimate.com/v1/badges/56ebdc88c8294c446739/maintainability)](https://codeclimate.com/github/alegemaate/asana-to-jira/maintainability)
 
 This does some preprocessing on Asana CSV exports to make it easier to import to JIRA.
 
